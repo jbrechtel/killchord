@@ -1,0 +1,13 @@
+-----BEGIN PGP MESSAGE-----
+Version: GnuPG/MacGPG2 v2.0.19 (Darwin)
+Comment: GPGTools - http://gpgtools.org
+
+owEBOgHF/pANAwAKAZWT+piD90c6AcsKYgBSRu/zZm9vCokBHAQAAQoABgUCUkbv
+8wAKCRCVk/qYg/dHOgMEB/4jwhyvl9UEd6OKVALltK6JFGO+HXTH8K1EKbc0fNQ6
+vKtjdrV8KTuhmhc69cB9+Z6R9f7OY/Q0GtxbAvPR6FBrLwmSkn96e2D+yqW6ADxv
+n6cPqq/QeZcfWcoJGZs/YbrK5DSlH+vmoDMKWkhxYueFitzGj+2uGN3wR5JXAjgX
+fEmY8RxhHijs3qlhcnWNkjTY63rGiSjSsJaFxJjW2bxmEUzxmqQINYSHXUOj8sx8
+mukiQCF37soYJabTNOgCzqnZmuzCeEWohBDZvDEq9WO+9Q0dFbUJSXNT0kihOTeD
+wRZX+zaE4+UI4tp8PTePcJ7gwwdd6fa4+YFF37uzbwoO
+=tfUM
+-----END PGP MESSAGE-----
