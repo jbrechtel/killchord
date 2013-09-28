@@ -8,4 +8,5 @@
                  [enlive "1.1.4"]
                  [org.bouncycastle/bcprov-jdk16 "1.46"]
                  [com.datomic/datomic-free "0.8.4159"]]
-  :main kill-chord.core)
+  :plugins [[lein-ring "0.8.5"]]
+  :ring {:handler kill-chord.handler/app})
