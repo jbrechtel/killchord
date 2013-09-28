@@ -7,6 +7,7 @@
                  [compojure "1.1.5"]
                  [enlive "1.1.4"]
                  [org.bouncycastle/bcprov-jdk16 "1.46"]
-                 [com.datomic/datomic-free "0.8.4159"]]
+                 [com.datomic/datomic-free "0.8.4159"]
+                 [ring/ring-jetty-adapter "1.2.0"]]
   :plugins [[lein-ring "0.8.5"]]
   :ring {:handler kill-chord.handler/app})

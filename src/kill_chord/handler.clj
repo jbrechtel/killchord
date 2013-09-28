@@ -1,12 +1,13 @@
 (ns kill-chord.handler
-    (:use compojure.core)
-      (:require [compojure.handler :as handler]
-                            [compojure.route :as route]))
+  (:use compojure.core)
+  (:require [compojure.handler :as handler]
+            [compojure.route :as route]
+            [kill-chord.templates :as templates]))
 
 (defroutes app-routes
-    (GET "/" [] "Hello World")
-      (route/resources "/")
-        (route/not-found "Not Found"))
+  (GET "/" [] (clojure.string/join (templates/index-template "Kill Chord")))
+  (route/resources "/")
+  (route/not-found "Not Found"))
 
 (def app
-    (handler/site app-routes))
+  (handler/site app-routes))
