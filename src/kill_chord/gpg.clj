@@ -7,18 +7,23 @@
         regex      #"(?m)^:signature packet:.* keyid ([0-9,A-F]{16})$"]
     (last (re-find regex output))))
 
-(defn parse-key-id-from-key [key]
+(defn create-keyring [public-key handler]
   (let [keyring-file         (java.io.File/createTempFile "keyring" ".gpg")
         keyring-path         (.getAbsolutePath keyring-file)
         gpg-opts             ["gpg" "--import" "--no-default-keyring"
                               "--keyring" keyring-path
-                              :in key]
-        import-result        (apply sh/sh gpg-opts)
-        list-keys-result     (sh/sh "gpg" "--fingerprint" "--no-default-keyring" "--keyring" keyring-path)
-        regex                #"(?m)^pub.*$\s+Key fingerprint = (([0-9,A-F]{4}\s*?){10})"
-        fingerprint-match    (re-find regex (:out list-keys-result))]
-    (.deleteOnExit keyring-file)
-    (clojure.string/replace (nth fingerprint-match 1) " " "")))
+                              :in public-key]
+        import-result        (apply sh/sh gpg-opts)]
+   (.deleteOnExit keyring-file)
+   (handler keyring-path)))
+
+(defn parse-key-id-from-key [key]
+  (create-keyring key
+                  #(let [list-keys-result        (sh/sh "gpg" "--fingerprint" "--no-default-keyring" "--keyring" %)
+                         regex                    #"(?m)^pub.*$\s+Key fingerprint = (([0-9,A-F]{4}\s*?){10})"
+                         fingerprint-match        (re-find regex (:out list-keys-result))]
+                      (println list-keys-result)
+                      (clojure.string/replace (nth fingerprint-match 1) " " ""))))
 
 (defn verify-signature [message public-key]
   (let [keyring-file         (java.io.File/createTempFile "keyring" ".gpg")
