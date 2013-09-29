@@ -6,6 +6,7 @@
 (def test-key (slurp "test/kill_chord/test-key.txt"))
 (def test-sig2 (slurp "test/kill_chord/test-signed-message.txt"))
 (def test-key2 (slurp "test/kill_chord/test-signed-message-public-key.txt"))
+(def test-sig-bad (slurp "test/kill_chord/test-signed-message-bad.txt"))
 
 (deftest finding-signatures
   (testing "can find a key-id in a signed message"
@@ -19,4 +20,6 @@
 
 (deftest cryptographic-operations
   (testing "can validate signature given public key"
-    (is (verify-signature test-sig2 test-key2))))
+    (is (verify-signature test-sig2 test-key2)))
+  (testing "verify-signature returns false for signatures that do not validate"
+    (is (not (verify-signature test-sig-bad test-key2)))))
