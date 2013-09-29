@@ -3,7 +3,7 @@
 
 (defmacro with-keyring [[public-key keyring-path] & body]
   `(let [keyring-file#         (java.io.File/createTempFile "keyring" ".gpg")
-         ~'keyring-path        (.getAbsolutePath keyring-file#)
+         ~keyring-path         (.getAbsolutePath keyring-file#)
          gpg-opts#             ["gpg" "--import" "--no-default-keyring"
                                 "--keyring" ~keyring-path
                                 :in ~public-key]
@@ -32,4 +32,4 @@
                                 "--verify"
                                 :in message]
           verify-results       (apply sh/sh gpg-verify-opts)]
-        (= 0 (:exit verify-results)))))
+      (= 0 (:exit verify-results)))))
