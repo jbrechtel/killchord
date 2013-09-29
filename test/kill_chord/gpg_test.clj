@@ -4,6 +4,8 @@
 
 (def test-sig (slurp "test/kill_chord/test-sig.txt"))
 (def test-key (slurp "test/kill_chord/test-key.txt"))
+(def test-sig2 (slurp "test/kill_chord/test-signed-message.txt"))
+(def test-key2 (slurp "test/kill_chord/test-signed-message-public-key.txt"))
 
 (deftest finding-signatures
   (testing "can find a key-id in a signed message"
@@ -14,3 +16,7 @@
     (let [expected-key-id "170B3396DD7055021F806B513CFFD6AF57CEE3F6"
           actual-key-id   (parse-key-id-from-key test-key)]
     (is (= expected-key-id actual-key-id)))))
+
+(deftest cryptographic-operations
+  (testing "can validate signature given public key"
+    (is (verify-signature test-sig2 test-key2))))
